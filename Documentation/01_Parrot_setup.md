@@ -3,7 +3,7 @@
 Follow instructions in:
 https://www.theconstructsim.com/how-to-launch-drone-simulation-locally/
 
-## **1. Install and setup the workspace**
+## **1. Install and setup the workspace for simulation**
 You can create a new workspace for this new project or clone a previously created one.
 
 ### **1.1. Create a new workspace**
@@ -20,10 +20,11 @@ git clone https://bitbucket.org/theconstructcore/spawn_robot_tools.git
 A simpler version adapted to ROS-Noetic is:
 - https://github.com/tahsinkose/sjtu-drone
 
+We have cloned this one and changed the workspace name to "rUBot_ardrone_ws"
 
 **- Installing ignition-math, used by sjtu_drone**
 
-We will need to install the Ignition Math library, which is used by the sjtu_drone drone found on the parrot_ardrone repository we cloned previously.
+We will need to install the Ignition Math library, which is used by the sjtu_drone found on the parrot_ardrone repository we cloned previously.
 ```shell
 sudo apt update
 sudo apt upgrade
@@ -35,6 +36,8 @@ wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install libignition-math4-dev -y
 ```
+> The same has to be done if you use the simpler "rUBot_ardrone_ws"
+
 **- Compilation**
 
 It may happen that when compiling the package, catkin_make can’t find the ignition library, so we need to export the CXXFLAGS accordingly. In my local computer, the ignition library is found at /usr/include/ignition/math4, so to compile we use the following commands:
@@ -46,11 +49,11 @@ catkin_make
 ```
 
 ### **1.2. Clone the repository**
-The recomended procedure is to clone the "rUBot_parrot_ws" repository from my github:
+The recomended procedure is to clone the "rUBot_ardrone_ws" repository from my github:
 ```shell
 cd /home
-git clone https://github.com/manelpuig/rUBot_parrot_ws
-cd /home/rUBot_parrot_ws/
+git clone https://github.com/manelpuig/rUBot_ardrone_ws
+cd /home/rUBot_ardrone_ws/
 catkin_make
 ```
 Be sure you have installed "Git Extension Pack (Don Jayamanne) in cocker container. If needed, uninstall and install to Docker container. You will need to close the VS Code and open it againg.
@@ -59,9 +62,11 @@ Your computer is ready for simulation
 
 ### **1.3. Launching the simulation**
 
-Now that you have everything in place, you should be able to launch the simulation with the command below:
+Now that you have everything in place, you should be able to launch the simulation with the command below (in function of the ws you have cloned):
 ```shell
 rosrun drone_construct start_simulation_localy.sh
+or
+roslaunch ar_drone simple.launch
 ```
 >The first time it takes longtime to update the model libraries
 
@@ -83,6 +88,11 @@ pkill gzserver && pkill gzclient
 ```
 This will close efficiently all the services and modules needed for gazebo simulation
 
+In the case of "ar_drone" you have a usefull "drone_keyboard"
+```shell
+rosrun ar_drone drone_keyboard
+```
+Click on the keyboard image and use the keys for movements
 ## **2. Parrot AR-Drone HW installation**
 
 For HW installation follow instructions in:
