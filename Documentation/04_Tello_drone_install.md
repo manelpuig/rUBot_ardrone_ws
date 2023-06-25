@@ -8,6 +8,7 @@ https://www.youtube.com/watch?v=uMiXP_AwhmM
 These modifications are:
 - sudo apt install python3-pip
 - sudo -H pip3 install -e .
+- open file tello_driver_node.py and change to python3
 - catkin_make
 
 # **Running the driver**

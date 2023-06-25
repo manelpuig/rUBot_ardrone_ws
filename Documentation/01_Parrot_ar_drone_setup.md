@@ -42,7 +42,7 @@ sudo apt-get install libignition-math4-dev -y
 
 It may happen that when compiling the package, catkin_make can’t find the ignition library, so we need to export the CXXFLAGS accordingly. In my local computer, the ignition library is found at /usr/include/ignition/math4, so to compile we use the following commands:
 ```shell
-cd /home/rUBot_parrot_ws
+cd /home/rUBot_ardrone_ws
 export CXXFLAGS=-isystem\ /usr/include/ignition/math4
 source /opt/ros/noetic/setup.bash
 catkin_make
@@ -53,7 +53,7 @@ The recomended procedure is to clone the "rUBot_ardrone_ws" repository from my g
 ```shell
 cd /home
 git clone https://github.com/manelpuig/rUBot_ardrone_ws
-cd /home/rUBot_ardrone_ws/
+cd /home/ubuntu/rUBot_ardrone_ws/
 catkin_make
 ```
 Be sure you have installed "Git Extension Pack (Don Jayamanne) in cocker container. If needed, uninstall and install to Docker container. You will need to close the VS Code and open it againg.
